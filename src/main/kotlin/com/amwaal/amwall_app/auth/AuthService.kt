@@ -61,6 +61,13 @@ class AuthService(
             throw IllegalArgumentException("PIN and Confirm PIN must match")
         }
 
+        val user = userService.findUserById(principal.id)
+            ?: throw IllegalArgumentException("User not found")
+        
+        if(user.hasSetupPin) {
+            throw IllegalArgumentException("PIN has already been set for this user")
+        }
+        
         val updatedUser = userService.updateUserPin(principal.id, dto.pin)
 
         return AuthResponseDto(

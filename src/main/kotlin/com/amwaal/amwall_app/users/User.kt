@@ -8,7 +8,11 @@ enum class Role {
     USER,
     ADMIN,
 }
-
+enum class Gender {
+    MALE,
+    FEMALE,
+    OTHER
+}
 @Entity
 @Table(name = "users")
 class User(
@@ -31,6 +35,13 @@ class User(
     @Column(name = "password", nullable = false)
     var password: String,
 
+    @Column(name = "country", nullable = false, length = 2)
+    var country: String,
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", nullable = false)
+    var gender: Gender,
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     var role: Role = Role.USER,

@@ -47,7 +47,18 @@ data class RegisterRequestDto(
 
     @field:NotBlank(message = "Username cannot be blank")
     @field:Size(min = 3, max = 30, message = "Username must be between 3 and 30 characters")
-    val username: String
+    val username: String,
+    
+    @field:NotBlank(message = "Country code cannot be blank")
+    @field:Size(min = 2, max = 2, message = "Country code must be exactly 2 characters")
+    val countryCode: String,
+    
+    @field:NotBlank(message = "Gender cannot be blank")
+    @field:Pattern(
+        regexp = "^(Male|Female|Other)$",
+        message = "Field must be one of: Male, Female, Other"
+    )    val gender: String
+    
 )
 
 data class LoginRequestDto(

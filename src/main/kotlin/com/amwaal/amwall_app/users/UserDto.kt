@@ -12,6 +12,8 @@ data class UserResponseDto(
     val phoneNumber: String,
     val phoneVerified: Boolean,
     val emailVerified: Boolean,
+    val country: String,
+    val gender: Gender,
     val createdAt: LocalDateTime,
 )
 
@@ -26,6 +28,8 @@ fun User.toResponseDto(): UserResponseDto {
         hasSetupPin =hasSetupPin,
         phoneVerified = this.phoneVerified,
         emailVerified = this.emailVerified,
+        country = this.country,
+        gender = this.gender,
         createdAt = this.createdAt ?: LocalDateTime.now() 
     )
 }
